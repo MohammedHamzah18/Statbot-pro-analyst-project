@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StatBot Pro</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">SP</div>
+          <div>
+            <h1>StatBot Pro</h1>
+            <p>Autonomous CSV data analyst</p>
+          </div>
+        </div>
+
+        <form id="upload-form" class="upload-panel">
+          <label for="dataset-file">Dataset</label>
+          <input id="dataset-file" name="file" type="file" accept=".csv,.xls,.xlsx" />
+          <button type="submit" title="Upload dataset">Upload</button>
+        </form>
+
+        <section class="dataset-list">
+          <div class="section-title">Recent datasets</div>
+          <div id="datasets"></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">Operations analytics</div>
+            <h2 id="active-title">Upload a dataset to begin</h2>
+          </div>
+          <div class="health" id="health">Checking API</div>
+        </header>
+
+        <section class="summary-grid" id="summary-grid">
+          <div class="metric">
+            <span>Rows</span>
+            <strong id="rows">0</strong>
+          </div>
+          <div class="metric">
+            <span>Columns</span>
+            <strong id="columns">0</strong>
+          </div>
+          <div class="metric">
+            <span>Numeric</span>
+            <strong id="numeric">0</strong>
+          </div>
+          <div class="metric">
+            <span>Date fields</span>
+            <strong id="dates">0</strong>
+          </div>
+        </section>
+
+        <section class="analysis-pane">
+          <form id="question-form" class="question-row">
+            <input
+              id="question"
+              type="text"
+              placeholder="Ask: plot sales over time with a 3-month rolling average"
+              autocomplete="off"
+            />
+            <button type="submit" title="Run analysis">Run</button>
+          </form>
+
+          <div class="content-grid">
+            <section class="panel">
+              <div class="section-title">Agent trace</div>
+              <ol id="steps" class="steps"></ol>
+            </section>
+
+            <section class="panel answer-panel">
+              <div class="section-title">Answer</div>
+              <p id="answer" class="answer">No analysis yet.</p>
+              <img id="chart" class="chart hidden" alt="Generated analysis chart" />
+              <pre id="diagnostics" class="diagnostics"></pre>
+            </section>
+          </div>
+
+          <section class="panel code-panel">
+            <div class="section-title">Generated Pandas code</div>
+            <pre id="code"># Generated code will appear here.</pre>
+          </section>
+
+          <section class="panel table-panel">
+            <div class="section-title">Preview</div>
+            <div id="preview" class="table-wrap"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="/frontend/app.js"></script>
+  </body>
+</html>

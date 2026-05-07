@@ -1,0 +1,19 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      STATBOT_SANDBOX_MODE: docker
+      STATBOT_SANDBOX_IMAGE: statbot-sandbox:latest
+    volumes:
+      - ./backend/storage:/app/backend/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  sandbox:
+    build:
+      context: backend/sandbox
+    image: statbot-sandbox:latest
+    command: ["python", "-c", "print('statbot sandbox ready')"]
